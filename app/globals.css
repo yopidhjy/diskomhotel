@@ -1,0 +1,226 @@
+/**
+ * DiskonHotel - Global Styles
+ * Production-ready CSS with CSS Variables for theming
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables - Light Theme */
+:root {
+  --background: 210, 20%, 98%;
+  --foreground: 210, 10%, 20%;
+  
+  --primary: 160, 70%, 35%;
+  --primary-foreground: 0, 0%, 100%;
+  
+  --accent: 25, 95%, 55%;
+  --accent-foreground: 0, 0%, 100%;
+  
+  --muted: 210, 10%, 40%;
+  --muted-foreground: 210, 10%, 50%;
+  
+  --border: 210, 20%, 90%;
+  --input: 210, 20%, 90%;
+  --ring: 210, 100%, 50%;
+  
+  --card: 0, 0%, 100%;
+  --card-foreground: 210, 10%, 18%;
+  
+  --popover: 0, 0%, 100%;
+  --popover-foreground: 210, 10%, 18%;
+  
+  --card-deck: 0, 0%, 100%;
+}
+
+/* Dark Theme */
+.dark {
+  --background: 0, 0%, 12%;
+  --foreground: 0, 0%, 93%;
+  
+  --primary: 160, 70%, 55%;
+  --primary-foreground: 0, 0%, 100%;
+  
+  --accent: 25, 95%, 65%;
+  --accent-foreground: 0, 0%, 100%;
+  
+  --muted: 210, 10%, 60%;
+  --muted-foreground: 210, 10%, 70%;
+  
+  --border: 210, 10%, 30%;
+  --input: 210, 10%, 30%;
+  --ring: 210, 100%, 70%;
+  
+  --card: 210, 10%, 18%;
+  --card-foreground: 0, 0%, 93%;
+  
+  --popover: 210, 10%, 18%;
+  --popover-foreground: 0, 0%, 93%;
+  
+  --card-deck: 210, 10%, 18%;
+}
+
+/* Typography Base */
+@layer base {
+  :root {
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-accent;
+    color: var(--accent-foreground);
+  }
+
+  /* Focus Ring */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2;
+  }
+}
+
+/* Components Base */
+@layer components {
+  /* Button Component */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-accent-foreground hover:bg-accent/90 shadow-sm;
+  }
+
+  .btn-outline {
+    @apply border border-input bg-background hover:bg-accent hover:text-accent-foreground;
+  }
+
+  /* Card Component */
+  .card {
+    @apply bg-card text-card-foreground rounded-xl border shadow-sm border-border;
+  }
+
+  /* Input Component */
+  .input {
+    @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm transition-colors file:none-l ol-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  /* Avatar Component */
+  .avatar {
+    @apply relative inline-flex items-center justify-center overflow-hidden rounded-full;
+  }
+
+  .avatar-img {
+    @apply aspect-square h-full w-full object-cover;
+  }
+
+  /* Badge Component */
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-weight-semibold;
+  }
+
+  .badge-default {
+    @apply bg-muted text-muted-foreground;
+  }
+
+  .badge-primary {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .badge-accent {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  /* Progress Component */
+  .progress {
+    @apply relative h-2 w-full overflow-hidden rounded-full bg-muted;
+  }
+
+  .progress-bar {
+    @apply h-full w-0 animate-[slideIn_1s_ease-out] bg-primary;
+  }
+}
+
+/* SEO Optimization */
+@layer head {
+  /* Prevent iPhone zoom on form inputs */
+  input, textarea, select {
+    font-size: 16px;
+  }
+}
+
+/* Font Smoothing */
+@supports (-moz-appearance: grayscale) {
+  * {
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@supports (dot-color: alpha(currentColor)) {
+  * {
+    -webkit-font-smoothing: block;
+  }
+}
+
+/* Image Optimization */
+img {
+  @apply rounded-lg;
+}
+
+/* Hide scrollbar but keep functionality */
+.custom-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Sitemap Generator Helper */
+[data-sitemap-item] {
+  display: none;
+}
+
+/* Critical CSS - Above-the-fold styles */
+.critical-header {
+  @apply bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-40 w-full border-b border-border;
+}
+
+.critical-nav {
+  @apply flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8;
+}
